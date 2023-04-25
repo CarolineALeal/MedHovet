@@ -1,0 +1,94 @@
+<?php
+
+	$acao = 'recuperar';
+	require 'estoque_controller.php';
+?>
+
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>MedHovet</title>
+
+		<link rel="stylesheet" href="css/estilo.css">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+		<script>
+			function editar(id) {
+				location.href = 'todos_estoques.php?acao=atualizar&id='+id;
+			}
+
+			function remover(id) {
+				location.href = 'todos_estoques.php?acao=remover&id='+id;
+			}
+		</script>
+	</head>
+
+	<body>
+		<nav class="navbar navbar-light bg-light">
+			<div class="container">
+				<a class="navbar-brand" href="#">
+					<img src="img/logo1.png" width="30" height="30" class="d-inline-block align-top" alt="">
+					MedHovet
+				</a>
+			</div>
+		</nav>
+
+		<div class="container app">
+			<div class="row">
+				<div class="col-sm-3 menu">
+					<ul class="list-group">
+<!-- 						<li class="list-group-item"><a href="index.php">Tarefas pendentes</a></li>
+ -->						<li class="list-group-item"><a href="novo_estoque.php">Novo Item</a></li>
+							<li class="list-group-item active"><a href="#">Itens</a></li>
+							<li class="list-group-item"><a href="tela_inicial.php">Tela Inicial</a></li>
+					</ul>
+				</div>
+
+				<div class="col-sm-9">
+					<div class="container pagina">
+						<div class="row">
+							<div class="col">
+								<h4>Itens</h4>
+								<hr />
+								<table class="table table">
+								<thead>
+									<thead>
+										<tr>
+											<th scope="col">ID</th>
+											<th scope="col">Item</th>
+											<th scope="col">Local</th>
+											<th scope="col">Quantidade</th>
+											<th scope="col">Validade</th>
+											<th scope="col">Unidade</th>
+											<th scope="col">Opções</th>
+										</tr>
+									</thead>
+								<tbody>
+									<?php foreach ($estoques as $indice => $estoque) : ?>
+										<tr>
+											<th><?= $estoque->id ?></th>
+											<td><?= $estoque->item ?></td>
+											<td><?= $estoque->local ?></td>
+											<td><?= $estoque->quantidade ?></td>
+											<td><?= $estoque->validade ?></td>
+											<td><?= $estoque->unidade?></td>
+											<td>
+												<div class="d-flex">
+													<i class="fas fa-trash-alt fa-lg text-danger mx-2" onclick="remover(<?= $estoque->id ?>)"></i>
+                                                    <a class="fas fa-edit fa-lg text-info mx-2" onclick="editar(<?= $estoque->id ?>)" href="atualizar_estoque.php?id=<?= $estoque->id ?>"></a>
+												</div>
+											</td>
+										</tr>
+									<?php endforeach; ?>
+								</tbody>
+							</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

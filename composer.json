@@ -1,0 +1,23 @@
+{
+    "name": "vendor/medhovet",
+    "require": {
+        "php": ">= 7.0"
+    },
+    "authors": [
+        {
+            "name": "Caroline Leal"
+        },
+        {
+            "name": "Lucas Lima"
+        },
+        {
+            "name": "Marina Lima"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "App/",
+            "MH\\": "vendor/MH/"
+        }
+    }
+}
